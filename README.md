@@ -4,7 +4,7 @@
 
 ## 注意
 
-这个解决方案，需要你为以下几种属性设置对应本地的文件，或者网络文件，具体请查看[官方文档](https://www.tiny.cloud/docs/)
+本项目的解决方案，需要你为以下几种属性设置对应本地的文件，或者网络文件，具体请查看[官方文档](https://www.tiny.cloud/docs/)
 
 - emoticons_database_url `emoji`
 - theme_url `theme`
