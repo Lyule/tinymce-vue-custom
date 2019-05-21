@@ -11,6 +11,15 @@
 - skin_url `skins`
 - content_css `content`
 
+## Usage
+
+除了pakeage外，其他使用方法和官方一样
+
+```sh
+npm install --save tinymce-vue-custom
+```
+
+
 # Official TinyMCE Vue component
 
 ## About

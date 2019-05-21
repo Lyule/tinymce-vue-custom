@@ -1,6 +1,6 @@
 {
   "name": "tinymce-vue-custom",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Official TinyMCE Vue Component",
   "private": false,
   "repository": {
