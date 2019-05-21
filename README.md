@@ -2,6 +2,15 @@
 
 直接使用官方的资源，而不是使用key从网络上拉
 
+## 注意
+
+这个解决方案，需要你为以下几种属性设置对应本地的文件，或者网络文件，具体请查看[官方文档](https://www.tiny.cloud/docs/)
+
+- emoticons_database_url `emoji`
+- theme_url `theme`
+- skin_url `skins`
+- content_css `content`
+
 # Official TinyMCE Vue component
 
 ## About

@@ -1,10 +1,10 @@
 {
-  "name": "@tinymce/tinymce-vue",
+  "name": "tinymce-vue-custom",
   "version": "2.0.0",
   "description": "Official TinyMCE Vue Component",
   "private": false,
   "repository": {
-    "url": "https://github.com/tinymce/tinymce-vue"
+    "url": "https://github.com/Lyule/tinymce-vue"
   },
   "main": "lib/cjs/index.js",
   "module": "lib/es2015/index.js",
@@ -30,7 +30,6 @@
     "LICENSE.txt"
   ],
   "dependencies": {
-    "@types/tinymce": "^4.5.22",
     "tinymce": "^5.0.5",
     "vue": "^2.5.17"
   },
