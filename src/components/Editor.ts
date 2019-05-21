@@ -9,12 +9,60 @@
 import { ThisTypedComponentOptionsWithRecordProps } from 'vue/types/options';
 import { CreateElement, Vue } from 'vue/types/vue';
 
-import * as ScriptLoader from '../ScriptLoader';
-import { getTinymce } from '../TinyMCE';
+// import * as ScriptLoader from '../ScriptLoader';
+// import { getTinymce } from '../TinyMCE';
 import { initEditor, isTextarea, mergePlugins, uuid } from '../Utils';
 import { editorProps, IPropTypes } from './EditorPropTypes';
 
-const scriptState = ScriptLoader.create();
+import 'tinymce/tinymce';
+
+// Any plugins you want to use has to be imported
+import 'tinymce/plugins/advlist';
+import 'tinymce/plugins/anchor';
+import 'tinymce/plugins/autolink';
+import 'tinymce/plugins/autoresize';
+import 'tinymce/plugins/autosave';
+import 'tinymce/plugins/bbcode';
+import 'tinymce/plugins/charmap';
+import 'tinymce/plugins/code';
+import 'tinymce/plugins/codesample';
+import 'tinymce/plugins/colorpicker';
+import 'tinymce/plugins/contextmenu';
+import 'tinymce/plugins/directionality';
+import 'tinymce/plugins/emoticons';
+import 'tinymce/plugins/fullpage';
+import 'tinymce/plugins/fullscreen';
+import 'tinymce/plugins/help';
+import 'tinymce/plugins/hr';
+import 'tinymce/plugins/image';
+import 'tinymce/plugins/imagetools';
+import 'tinymce/plugins/importcss';
+import 'tinymce/plugins/insertdatetime';
+import 'tinymce/plugins/legacyoutput';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/lists';
+import 'tinymce/plugins/media';
+import 'tinymce/plugins/nonbreaking';
+import 'tinymce/plugins/noneditable';
+import 'tinymce/plugins/pagebreak';
+import 'tinymce/plugins/paste';
+import 'tinymce/plugins/preview';
+import 'tinymce/plugins/print';
+import 'tinymce/plugins/quickbars';
+import 'tinymce/plugins/save';
+import 'tinymce/plugins/searchreplace';
+import 'tinymce/plugins/spellchecker';
+import 'tinymce/plugins/tabfocus';
+import 'tinymce/plugins/table';
+import 'tinymce/plugins/template';
+import 'tinymce/plugins/textcolor';
+import 'tinymce/plugins/textpattern';
+import 'tinymce/plugins/toc';
+import 'tinymce/plugins/visualblocks';
+import 'tinymce/plugins/visualchars';
+import 'tinymce/plugins/wordcount';
+
+// const scriptState = ScriptLoader.create();
 
 declare module 'vue/types/vue' {
   interface Vue {
@@ -22,6 +70,14 @@ declare module 'vue/types/vue' {
     element: Element | null;
     editor: any;
     inlineEditor: boolean;
+  }
+}
+declare global {
+  interface Window {
+    tinyMCE: {
+      init: (option: object) => void;
+      remove: (editor: object) => void;
+    };
   }
 }
 
@@ -64,7 +120,8 @@ const initialise = (ctx: IEditor) => () => {
     ctx.element.style.visibility = '';
   }
 
-  getTinymce().init(finalInit);
+  window.tinyMCE.init(finalInit);
+  // getTinymce().init(finalInit);
 };
 
 export const Editor: ThisTypedComponentOptionsWithRecordProps<Vue, {}, {}, {}, IPropTypes> = {
@@ -81,20 +138,21 @@ export const Editor: ThisTypedComponentOptionsWithRecordProps<Vue, {}, {}, {}, I
   mounted() {
     this.element = this.$el;
 
-    if (getTinymce() !== null) {
-      initialise(this)();
-    } else if (this.element && this.element.ownerDocument) {
-      const doc = this.element.ownerDocument;
-      const channel = this.$props.cloudChannel ? this.$props.cloudChannel : '5';
-      const apiKey = this.$props.apiKey ? this.$props.apiKey : '';
-      const url = `https://cloud.tinymce.com/${channel}/tinymce.min.js?apiKey=${apiKey}`;
+    initialise(this)();
+    // if (getTinymce() !== null) {
+    //   initialise(this)();
+    // } else if (this.element && this.element.ownerDocument) {
+    //   const doc = this.element.ownerDocument;
+    //   const channel = this.$props.cloudChannel ? this.$props.cloudChannel : '5';
+    //   const apiKey = this.$props.apiKey ? this.$props.apiKey : '';
+    //   const url = `https://cloud.tinymce.com/${channel}/tinymce.min.js?apiKey=${apiKey}`;
 
-      ScriptLoader.load(scriptState, doc, url, initialise(this));
-    }
+    //   ScriptLoader.load(scriptState, doc, url, initialise(this));
+    // }
   },
   beforeDestroy() {
-    if (getTinymce() !== null) {
-      getTinymce().remove(this.editor);
+    if (window.tinyMCE !== null) {
+      window.tinyMCE.remove(this.editor);
     }
   },
   render(h: any) {

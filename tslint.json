@@ -5,7 +5,8 @@
         "tslint-config-prettier"
     ],
     "jsRules": {
-      "semicolon": true
+      "semicolon": true,
+      "skipLibCheck": false
     },
     "rules": {
       "object-literal-sort-keys": false,

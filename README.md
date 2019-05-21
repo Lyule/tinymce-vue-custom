@@ -1,3 +1,7 @@
+# 无需申请授权的版本
+
+直接使用官方的资源，而不是使用key从网络上拉
+
 # Official TinyMCE Vue component
 
 ## About
